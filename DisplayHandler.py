@@ -1,0 +1,33 @@
+import pandas as pd
+
+class DisplayHandler:
+    def __init__(self):
+        self.name_idx = 0
+        self.position_idx = 1
+        self.atk_idx = 2
+        self.p_atk_idx = 3
+        self.p_crit_idx = 4
+        self.p_critd_idx = 5
+        self.speed_idx = 6
+    
+    def display_target_overview(self, idx, expected_damage, ttl_status_data):
+        print('\n第 ' + str(idx + 1) + ' 名結果: ')
+        print('期望傷害: ', round(expected_damage, 6))
+        print('總爆擊%: ', ttl_status_data['爆擊%'])
+        print('總爆擊傷害%: ', ttl_status_data['爆擊傷害%'])
+        print('總速度: ', ttl_status_data['速度'])
+        
+    def display_align_result(self, data): 
+        print('\n御魂組合:')        
+        print(data.columns.values[self.name_idx], ' ', data.columns.values[self.position_idx], ' ', data.columns.values[self.atk_idx], ' ', 
+              data.columns.values[self.p_atk_idx], ' ', data.columns.values[self.p_crit_idx], ' ', 
+              data.columns.values[self.p_critd_idx], ' ', data.columns.values[self.speed_idx])
+        
+        for i in range(6):
+            print('{:6s} {:7d} {:8.2f} {:8d} {:8d} {:8d} {:8d}'.format(
+                   data.iloc[i,self.name_idx], data.iloc[i,self.position_idx], 
+                   data.iloc[i,self.atk_idx], data.iloc[i,self.p_atk_idx], 
+                   data.iloc[i,self.p_crit_idx], data.iloc[i,self.p_critd_idx], data.iloc[i,self.speed_idx]))
+
+ 
+        
